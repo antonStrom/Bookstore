@@ -20,21 +20,22 @@
     <div id="app">
 
         <div class="logo">
-            <img src="book-logo.jpg" alt="Awsome logo" width="110px" height="100px">
+            <img id="logo" src="book-logo.jpg" alt="Awsome logo" width="110px" height="100px">
 
-
-            <input type="text" v-model="search" class="search" placeholder="search titles">
-
-
+            <div id="search">
+                <input type="text" v-model="search" class="search" placeholder="search titles">
+            </div>
         </div>
         <hr>
 
-        <div class="lds-ellipsis" v-if="filteredBooks.length == 0 && search == ''">
+        <div id="loader" class="lds-ellipsis" v-if="filteredBooks.length == 0 && search == ''">
             <div></div>
             <div></div>
             <div></div>
             <div></div>
         </div>
+
+        <div class="alert" v-if="filteredBooks == 0 && search != ''">No matching titles</div>
 
         <div class="books-container">
             <div class="flip-card" v-for="book in filteredBooks">
@@ -45,8 +46,7 @@
                     <div class="flip-card-back">
                         <h1>{{book.title}}</h1>
                         <p>{{book.description}}</p>
-                        <button data-fancybox="gallery" :href="book.detail"><img :src="book.detail"
-                                class="btn"></button>
+                        <button class="btn" data-fancybox="gallery" :href="book.detail">View
                     </div>
                 </div>
             </div>
